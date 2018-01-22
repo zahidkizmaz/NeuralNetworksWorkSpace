@@ -1,6 +1,7 @@
 class Perceptron {
 
   float[] weights = new float[2];
+  float lr = 0.1;
   
   public Perceptron(){
     for(int i= 0; i < weights.length; i++){
@@ -19,5 +20,16 @@ class Perceptron {
       sum += inputs[i] * weights[i];
     }
    return sign(sum); 
+  }
+  
+  void train(float[] inputs, int target){
+  
+    int guess = guess(inputs);
+    int error = target - guess;
+    
+    // tune all the weights!
+    for (int i=0; i< weights.length; i++){
+      weights[i] += error * inputs[i] * lr;
+    }
   }
 }
