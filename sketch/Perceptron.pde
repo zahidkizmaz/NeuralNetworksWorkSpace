@@ -6,7 +6,7 @@ class Perceptron {
     for(int i= 0; i < weights.length; i++){
       weights[i] = random(-1,1);
     }  
-  }
+  } 
   
   int sign(float n){
     if (n >= 0) return 1;
