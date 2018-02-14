@@ -1,0 +1,5 @@
+1- Provide the perceptron with inpts and the known answers.
+2- Ask the perceptron to guess an answer.
+3- Compute the error
+4- Adjust all the weights according to the error.
+5- Return to step 1
