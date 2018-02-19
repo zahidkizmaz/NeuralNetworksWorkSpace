@@ -33,4 +33,16 @@ class NeuralNetwork:
         return np.max([0 ,x])
 
     def predict(self, input_array):
+        # generating hidden outputs
         inputs = np.array(input_array)
+        hidden = np.array(np.dot(self.weights_ho, inputs))
+        hidden += self.bias_h
+        
+        # activation function!
+        hidden = np.map(sigmoid, hidden)
+        
+        output = np.dot(self.weights_ho, hidden)
+        output += self.bias_o
+        output = np.map(sigmoid, output)
+
+        return np.ravel(output)
