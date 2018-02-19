@@ -22,5 +22,15 @@ class NeuralNetwork:
         self.bias_o = np.random.random((self.output_nodes.size(), 1))
         self.bias_o *= 2
         self.bias_o -= 1
-    
+        
+        self.learning_rate = 0.1
 
+    # y = (1 / 1 + (e ^ -x))
+    def sigmoid(self, x):0
+        return (1 /(1 + np.exp(-x))) 
+
+    def relu(self, x):
+        return np.max([0 ,x])
+
+    def predict(self, input_array):
+        inputs = np.array(input_array)
