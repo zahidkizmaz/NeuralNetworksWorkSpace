@@ -46,3 +46,50 @@ class NeuralNetwork:
         output = np.map(sigmoid, output)
 
         return np.ravel(output)
+
+    def train(self, input_array, target_array):
+        inputs = np.array(input_array)
+        hidden = np.dot(self.weights_ih, inputs)
+        hidden += self.bias_h
+        hidden = np.map(sigmoid, hidden)
+
+        outputs = np.dot(self.weights_ih, hidden)
+        outputs += self.bias_o
+        outputs = np.map(sigmoid, outputs)
+
+        targets = np.array(target_array)
+        
+        output_errors = targets - outputs
+
+        gradients = np.map(sigmoid, outputs)
+        gradients = np.dot(gradients, output_errors)
+        gradients *= self.learning_rate
+        
+        hidden_T = np.transpose(hidden)
+        weight_ho_deltas = np.dot(gradients, hidden_T)
+
+        self.weights_ho += weight_ho_deltas
+
+        self.bias_o += gradients
+
+        who_t = np.transpose(self.weights_ho)
+        hidden_errors = np.dot(who_t, output_errors)
+
+        hidden_gradient = np.map(sigmoid, output_errors)
+        hidden_gradient = np.dot(hidden_gradient, hidden_errors)
+        hidden_gradient *= self.learning_rate
+
+        inputs_T = np.transpose(inputs)
+        weight_ih_deltas = np.dot(hidden_gradient, inputs_T)
+
+        self.weights_ih += weight_ih_deltas
+
+        self.bias_h += hidden_gradient
+
+
+
+
+
+
+
+
